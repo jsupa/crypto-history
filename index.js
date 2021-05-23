@@ -7,7 +7,7 @@ const helpers = require('./lib/helpers');
 
 const app = express();
 const handlers = {};
-const serverPort = 3000;
+const serverPort = 3000; // ! change me
 
 const debug = util.debuglog('handlers');
 
@@ -24,7 +24,7 @@ handlers.init = function () {
         const date = new Date();
         const fromDefault = from !== undefined ? from : date.setMonth(date.getMonth() - 1) / 1000;
         const toDefault = to !== undefined ? to : Date.now() / 1000;
-        console.log(fromDefault, ' - ', toDefault);
+        // // console.log(fromDefault, ' - ', toDefault);
 
         function filterData(data) {
             return (data.time > fromDefault && data.time < toDefault);
