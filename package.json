@@ -1,0 +1,33 @@
+{
+    "name": "crypto-history",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "start": "node index"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jsupa/crypto-history.git"
+    },
+    "author": "Jakub Supa",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jsupa/crypto-history/issues"
+    },
+    "homepage": "https://github.com/jsupa/crypto-history#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "fast-folder-size": "^1.3.0",
+        "ip": "^1.1.5",
+        "request": "^2.88.2"
+    },
+    "devDependencies": {
+        "eslint": "^7.27.0",
+        "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-plugin-import": "^2.23.3"
+    }
+}
