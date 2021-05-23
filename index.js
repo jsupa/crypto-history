@@ -2,19 +2,16 @@ const request = require('request');
 const util = require('util');
 const express = require('express');
 const ip = require('ip');
-const getSize = require('fast-folder-size');
-
 const _data = require('./lib/data');
 const helpers = require('./lib/helpers');
 
-const handlers = {};
 const app = express();
-
+const handlers = {};
 const serverPort = 3000;
 
 const debug = util.debuglog('handlers');
 
-//* NODE_DEBUG=handlers node index.js
+// * NODE_DEBUG=handlers node index.js
 
 handlers.init = function () {
     app.listen(serverPort, () => setTimeout(() => {
@@ -40,14 +37,11 @@ handlers.update = function () {
                 time = helpers.GetTime();
             } else if (i === cryptoData.length - 1) {
                 time = helpers.GetTime() - time;
-                getSize('./data/crypto', (err, size) => {
-                    if (err) { throw err; }
-                    console.log(`created / updated ${cryptoData.length} files (${(size / 1024 / 1024).toFixed(2)} Mb) in ${(time * 1000).toFixed(2)} ms`);
-                });
+                console.log(`created / updated ${cryptoData.length} files in ${(time * 1000).toFixed(2)} ms`);
             }
             _data.exist('crypto', symbolData.symbol, (err) => {
                 if (!err) {
-                    // EXIST UPDATE FILE
+                    // ? EXIST UPDATE FILE
                     _data.read('crypto', symbolData.symbol, (err, data) => {
                         if (!err && data) {
                             data.push({
@@ -79,7 +73,7 @@ handlers.update = function () {
                         }
                     });
                 } else {
-                    // NOT EXIST CREATE FILE
+                    // ? NOT EXIST CREATE FILE
                     const fileData = [
                         {
                             time: helpers.GetTime(),

@@ -21,7 +21,6 @@
     "homepage": "https://github.com/jsupa/crypto-history#readme",
     "dependencies": {
         "express": "^4.17.1",
-        "fast-folder-size": "^1.3.0",
         "ip": "^1.1.5",
         "request": "^2.88.2"
     },
