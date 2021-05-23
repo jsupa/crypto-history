@@ -19,6 +19,35 @@ handlers.init = function () {
             `Web server running.\n\n\thttp://${ip.address()}:${serverPort}\n`,
         );
     }, 1000));
+    app.get('/', (req, res) => {
+        const { symbol, from, to } = req.query;
+        const date = new Date();
+        const fromDefault = from !== undefined ? from : date.setMonth(date.getMonth() - 1) / 1000;
+        const toDefault = to !== undefined ? to : Date.now() / 1000;
+        console.log(fromDefault, ' - ', toDefault);
+
+        function filterData(data) {
+            return (data.time > fromDefault && data.time < toDefault);
+        }
+
+        if (symbol) {
+            _data.read('crypto', symbol, (err, data) => {
+                if (!err && data) {
+                    res.json(data.filter(filterData));
+                } else {
+                    debug(
+                        'ID 132 - ',
+                        helpers.GetTime(),
+                        ' - ',
+                        symbol,
+                        '- error reading file', err
+                    );
+                }
+            });
+        } else {
+            res.json({ status: 'invalid parameters' });
+        }
+    });
     setInterval(() => {
         const date = new Date();
         if (date.getMinutes() % 5 === 0) {
